@@ -4,29 +4,24 @@ const Logo = ({ light = false }) => {
   return (
     <Link
       to="/dashboard"
-      aria-label="Go to dashboard"
-      className="inline-flex items-center gap-3 transition-opacity hover:opacity-80"
+      className="flex items-center gap-3 transition-opacity hover:opacity-80"
     >
-      {/* Logo mark */}
-      <div className="relative flex h-10 w-10 items-center justify-center overflow-hidden rounded-xl bg-zinc-950 shadow-sm">
-        <div className="absolute -right-2 -top-2 h-6 w-6 rounded-full bg-violet-500" />
-
-        <span className="relative font-display text-xl font-bold text-white">
-          L
-        </span>
+      <div className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-slate-950">
+        <img
+          src="/logo.png"
+          alt="LendLedger"
+          className="h-full w-full object-cover"
+        />
       </div>
 
-      {/* Logo text */}
       <div>
         <div
           className={`font-display text-xl font-bold tracking-tight ${
-            light ? "text-white" : "text-zinc-950"
+            light ? "text-white" : "text-slate-950"
           }`}
         >
-          LEND
-          <span className="text-violet-600">
-            LEDGER
-          </span>
+          Lend
+          <span className="text-violet-600">Ledger</span>
         </div>
 
         <div
