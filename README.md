@@ -29,24 +29,3 @@ LendLedger/
 ├── server/     # Node.js + Express backend
 ├── .gitignore
 └── README.md
-
-
-## Run Locally
-Frontend
-cd client
-npm install
-npm run dev
-Backend
-cd server
-npm install
-npm run dev
-
-Create .env files for required environment variables such as MongoDB URI, JWT secret, and API URL.
-
-Status
-
-🚀 Active Development
-
-Author
-
-Dinesh Bishokarma
