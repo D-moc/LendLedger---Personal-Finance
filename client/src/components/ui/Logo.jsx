@@ -9,7 +9,7 @@ const Logo = ({ light = false }) => {
       <div className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-slate-950">
         <img
           src="/logo.png"
-          alt="LendLedger"
+          alt="DueLedger"
           className="h-full w-full object-cover"
         />
       </div>

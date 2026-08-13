@@ -8,7 +8,7 @@ export const sendPasswordResetEmail = async ({
   try {
     const templateParams = {
       to_email: email,
-      name: name || "LendLedger User",
+      name: name || "DueLedger User",
       reset_url: resetUrl,
     };
 

@@ -1,4 +1,4 @@
-# LendLedger — Personal Finance
+# DueLedger — Personal Finance
 
 A web-based personal finance platform to manage money given, borrowed, repayments, and outstanding balances in one place.
 
@@ -24,7 +24,7 @@ A web-based personal finance platform to manage money given, borrowed, repayment
 ## Project Structure
 
 ```text
-LendLedger/
+DueLedger/
 ├── client/     # React frontend
 ├── server/     # Node.js + Express backend
 ├── .gitignore

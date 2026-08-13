@@ -228,7 +228,7 @@ const Sidebar = ({ mobileOpen, onClose }) => {
                 </div>
 
                 <span className="font-mono text-[8px] font-medium uppercase tracking-[0.2em] text-violet-300">
-                  LENDLEDGER
+                  DueLedger
                 </span>
 
               </div>

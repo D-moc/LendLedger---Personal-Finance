@@ -158,7 +158,7 @@ const Login = () => {
 
 
               <p className="mt-7 max-w-lg text-[15px] leading-7 text-slate-500">
-                LendLedger keeps your lending,
+                DueLedger keeps your lending,
                 borrowing, repayments and
                 outstanding balances organized
                 in one simple financial workspace.
@@ -314,7 +314,7 @@ const Login = () => {
 
 
               <span className="hidden font-mono text-[8px] uppercase tracking-[0.3em] text-slate-400 xl:block">
-                LENDLEDGER / 01
+                DueLedger / 01
               </span>
 
             </div>
@@ -509,7 +509,7 @@ const Login = () => {
                 className="group flex w-full items-center justify-center gap-2 rounded-xl border border-zinc-200 bg-slate-50 py-3.5 text-sm font-semibold text-slate-700 transition hover:border-violet-200 hover:bg-violet-50 hover:text-violet-700"
               >
 
-                Create your LendLedger account
+                Create your DueLedger account
 
                 <ArrowUpRight
                   size={14}
@@ -524,7 +524,7 @@ const Login = () => {
             {/* Bottom */}
 
             <p className="mt-6 text-center font-mono text-[8px] uppercase tracking-[0.25em] text-slate-400">
-              Secure access · Personal finance · LendLedger
+              Secure access · Personal finance · DueLedger
             </p>
 
           </div>

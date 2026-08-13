@@ -313,7 +313,7 @@ const Settings = () => {
         <SettingsSection
           icon={User}
           title="Account"
-          description="Your LendLedger account information."
+          description="Your DueLedger account information."
         >
 
           <div className="grid gap-4 sm:grid-cols-2">
@@ -529,7 +529,7 @@ const Settings = () => {
                 </p>
 
                 <p className="mt-1 text-xs text-slate-400">
-                  Sign out of your LendLedger account on this device.
+                  Sign out of your DueLedger account on this device.
                 </p>
 
               </div>

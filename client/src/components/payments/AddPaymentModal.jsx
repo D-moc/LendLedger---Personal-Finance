@@ -129,7 +129,7 @@ const AddPaymentModal = ({
 
       window.dispatchEvent(
         new CustomEvent(
-          "lendledger:payment-created",
+          "DueLedger:payment-created",
           {
             detail: {
               transaction,

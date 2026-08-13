@@ -193,7 +193,7 @@ const ForgotPassword = () => {
 
           {/* Footer */}
           <p className="mt-6 text-center text-[10px] text-slate-400">
-            LendLedger · Personal Finance
+            DueLedger · Personal Finance
           </p>
         </div>
       </section>

@@ -47,7 +47,7 @@ app.use(cookieParser());
 
 app.get("/", (req, res) => {
   res.json({
-    message: "LendLedger API is running 🚀",
+    message: "DueLedger API is running 🚀",
   });
 });
 

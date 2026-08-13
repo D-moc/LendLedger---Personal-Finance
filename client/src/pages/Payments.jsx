@@ -101,13 +101,13 @@ const Payments = () => {
     };
 
     window.addEventListener(
-      "lendledger:payment-created",
+      "DueLedger:payment-created",
       handlePaymentCreated
     );
 
     return () => {
       window.removeEventListener(
-        "lendledger:payment-created",
+        "DueLedger:payment-created",
         handlePaymentCreated
       );
     };

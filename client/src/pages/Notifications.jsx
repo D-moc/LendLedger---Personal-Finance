@@ -459,7 +459,7 @@ const Notifications = () => {
             </div>
 
             <p className="mt-2 text-sm text-slate-500">
-              Stay updated with your LendLedger activity.
+              Stay updated with your DueLedger activity.
             </p>
 
           </div>
