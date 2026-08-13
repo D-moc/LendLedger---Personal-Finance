@@ -20,7 +20,7 @@ const Logo = ({ light = false }) => {
             light ? "text-white" : "text-slate-950"
           }`}
         >
-          Lend
+          Due
           <span className="text-violet-600">Ledger</span>
         </div>
 
