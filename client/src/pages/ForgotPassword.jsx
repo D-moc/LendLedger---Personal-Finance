@@ -7,6 +7,7 @@ import {
   ShieldCheck,
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import emailjs from "@emailjs/browser";
 
 import Logo from "../components/ui/Logo";
 import Input from "../components/ui/Input";
@@ -35,15 +36,37 @@ const ForgotPassword = () => {
     setLoading(true);
 
     try {
-      await api.post("/auth/forgot-password", {
+      // Generate reset token and URL from backend
+      const response = await api.post("/auth/forgot-password", {
         email: normalizedEmail,
       });
 
+      const resetUrl = response.data?.resetUrl;
+
+      if (!resetUrl) {
+        throw new Error("Reset link was not generated.");
+      }
+
+      // Send reset link through EmailJS
+      await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        {
+          to_email: normalizedEmail,
+          reset_link: resetUrl,
+        },
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+      );
+
       setSuccess(true);
     } catch (error) {
+      console.error("Forgot password error:", error);
+
       setError(
         error.response?.data?.message ||
-          "Unable to process your request. Please try again."
+          error.text ||
+          error.message ||
+          "Unable to send the reset email. Please try again."
       );
     } finally {
       setLoading(false);
@@ -52,12 +75,10 @@ const ForgotPassword = () => {
 
   return (
     <main className="min-h-screen bg-slate-50 text-slate-900">
-      {/* Top navigation */}
+      {/* Header */}
       <header className="border-b border-slate-200 bg-white">
         <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-8">
-          <Link to="/login" className="transition-opacity hover:opacity-80">
-            <Logo />
-          </Link>
+          <Logo />
 
           <Link
             to="/login"
@@ -90,8 +111,8 @@ const ForgotPassword = () => {
                 </h1>
 
                 <p className="mt-3 text-sm leading-6 text-slate-500">
-                  No problem. Enter your email address and we'll send you a
-                  secure link to reset your password.
+                  No problem. Enter your email address and we'll
+                  send you a secure link to reset your password.
                 </p>
               </div>
 
@@ -103,13 +124,18 @@ const ForgotPassword = () => {
               )}
 
               {/* Form */}
-              <form onSubmit={handleSubmit} className="mt-7 space-y-5">
+              <form
+                onSubmit={handleSubmit}
+                className="mt-7 space-y-5"
+              >
                 <Input
                   label="Email address"
                   type="email"
                   name="email"
                   value={email}
-                  onChange={(event) => setEmail(event.target.value)}
+                  onChange={(event) =>
+                    setEmail(event.target.value)
+                  }
                   placeholder="you@example.com"
                   autoComplete="email"
                 />
@@ -138,8 +164,8 @@ const ForgotPassword = () => {
                 />
 
                 <p className="text-[11px] leading-5 text-slate-500">
-                  For your security, password reset links are temporary and
-                  can only be used once.
+                  Password reset links are temporary and expire
+                  after 15 minutes.
                 </p>
               </div>
             </div>
@@ -178,7 +204,8 @@ const ForgotPassword = () => {
               </div>
 
               <p className="mt-5 text-[11px] leading-5 text-slate-400">
-                Didn't receive it? Check your spam folder or try again.
+                Didn't receive it? Check your spam folder or try
+                again.
               </p>
 
               <Link

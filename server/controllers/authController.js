@@ -442,21 +442,7 @@ export const forgotPassword = async (
 
     const resetUrl =
       `${clientUrl}/reset-password/${resetToken}`;
-
-    console.log(
-      "======================================"
-    );
-
-    console.log(
-      "PASSWORD RESET LINK:"
-    );
-
-    console.log(resetUrl);
-
-    console.log(
-      "======================================"
-    );
-
+      
     // Development response
     res.status(200).json({
       message:
