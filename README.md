@@ -1,31 +1,47 @@
 # DueLedger — Personal Finance
 
-A web-based personal finance platform to manage money given, borrowed, repayments, and outstanding balances in one place.
+A full-stack web platform for managing money given, borrowed, repayments, interest, and outstanding balances.
 
 ## Features
 
-- 🔐 User authentication
-- 👥 People management
-- 💰 Money given & borrowed tracking
-- 💳 Payment & repayment tracking
-- 📊 Dashboard & financial reports
-- 🔎 Search and record filtering
-- 📦 Archive & restore people
+- 🔐 JWT Authentication
+- 👥 People Management
+- 💰 Lending & Borrowing Tracking
+- 💳 Payments & Repayments
+- 📊 Dashboard & Reports
+- 📈 Interest & Outstanding Balances
+- 🔎 Search & Filtering
+- 📦 Archive & Restore
 - 📱 Responsive UI
 
 ## Tech Stack
 
-**Frontend:** React, Vite, Tailwind CSS, React Router, Axios, Recharts
+React, Vite, Tailwind CSS, Node.js, Express.js, MongoDB, Mongoose, JWT, Axios, Recharts, Vercel.
 
-**Backend:** Node.js, Express.js, MongoDB, Mongoose, JWT
+## Run Locally
 
-**Deployment:** Vercel
+### Frontend
 
-## Project Structure
+```bash
+cd client
+npm install
+npm run dev
+```
 
-```text
-DueLedger/
-├── client/     # React frontend
-├── server/     # Node.js + Express backend
-├── .gitignore
-└── README.md
+### Backend
+
+```bash
+cd server
+npm install
+npm run dev
+```
+
+Create the required `.env` files for MongoDB, JWT, API URL, and CORS configuration.
+
+## Live Demo
+
+https://due-ledger.vercel.app
+
+## Author
+
+**Dinesh Bishokarma**
