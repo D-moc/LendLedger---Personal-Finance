@@ -97,6 +97,7 @@ const AddPaymentModal = ({
       return;
     }
 
+    // Principal cannot exceed the outstanding principal.
     if (principal > outstandingPrincipal) {
       setError(
         "Principal payment cannot exceed the outstanding principal."
@@ -104,12 +105,9 @@ const AddPaymentModal = ({
       return;
     }
 
-    if (interest > outstandingInterest) {
-      setError(
-        "Interest payment cannot exceed the outstanding interest."
-      );
-      return;
-    }
+    // Interest is intentionally NOT capped.
+    // Users can manually record interest received
+    // even when currently outstanding interest is ₹0.
 
     try {
       setLoading(true);
@@ -147,9 +145,11 @@ const AddPaymentModal = ({
       setPaymentType("BOTH");
       setPrincipalAmount("");
       setInterestAmount("");
+
       setPaymentDate(
         new Date().toISOString().split("T")[0]
       );
+
       setNotes("");
       setError("");
 
@@ -168,7 +168,6 @@ const AddPaymentModal = ({
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-900/20 p-4 backdrop-blur-sm">
-
       <div
         className="absolute inset-0"
         onClick={onClose}
@@ -178,9 +177,7 @@ const AddPaymentModal = ({
 
         {/* Header */}
         <div className="flex items-center justify-between border-b border-slate-100 px-5 py-4">
-
           <div className="flex items-center gap-3">
-
             <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-violet-50 text-violet-600">
               <CreditCard size={17} />
             </div>
@@ -194,7 +191,6 @@ const AddPaymentModal = ({
                 Add payment to this record
               </p>
             </div>
-
           </div>
 
           <button
@@ -204,7 +200,6 @@ const AddPaymentModal = ({
           >
             <X size={17} />
           </button>
-
         </div>
 
         <form
@@ -214,7 +209,6 @@ const AddPaymentModal = ({
 
           {/* Outstanding */}
           <div className="flex items-center justify-between rounded-xl bg-slate-50 px-4 py-3">
-
             <div>
               <p className="text-[10px] font-semibold uppercase tracking-wider text-slate-400">
                 Outstanding
@@ -236,18 +230,15 @@ const AddPaymentModal = ({
                 {outstandingInterest.toLocaleString("en-IN")}
               </p>
             </div>
-
           </div>
 
           {/* Payment Type */}
           <div>
-
             <label className="mb-2 block text-[10px] font-semibold uppercase tracking-wider text-slate-500">
               Payment type
             </label>
 
             <div className="grid grid-cols-3 gap-2">
-
               <PaymentType
                 active={paymentType === "PRINCIPAL"}
                 onClick={() =>
@@ -274,9 +265,7 @@ const AddPaymentModal = ({
                 label="Both"
                 icon={ArrowDownLeft}
               />
-
             </div>
-
           </div>
 
           {/* Amounts */}
@@ -298,7 +287,6 @@ const AddPaymentModal = ({
                 label="Interest"
                 value={interestAmount}
                 onChange={setInterestAmount}
-                max={outstandingInterest}
               />
             )}
 
@@ -306,7 +294,6 @@ const AddPaymentModal = ({
 
           {/* Date */}
           <div>
-
             <label className="mb-2 block text-[10px] font-semibold uppercase tracking-wider text-slate-500">
               Payment date
             </label>
@@ -319,12 +306,10 @@ const AddPaymentModal = ({
               }
               className="w-full rounded-xl border border-slate-200 px-3 py-2.5 text-sm text-slate-700 outline-none focus:border-violet-400 focus:ring-2 focus:ring-violet-500/10"
             />
-
           </div>
 
           {/* Note */}
           <div>
-
             <label className="mb-2 block text-[10px] font-semibold uppercase tracking-wider text-slate-500">
               Note
             </label>
@@ -339,7 +324,6 @@ const AddPaymentModal = ({
               placeholder="Optional note..."
               className="w-full resize-none rounded-xl border border-slate-200 px-3 py-2.5 text-sm text-slate-700 outline-none placeholder:text-slate-400 focus:border-violet-400 focus:ring-2 focus:ring-violet-500/10"
             />
-
           </div>
 
           {/* Error */}
@@ -351,7 +335,6 @@ const AddPaymentModal = ({
 
           {/* Total */}
           <div className="flex items-center justify-between border-t border-slate-100 pt-4">
-
             <span className="text-xs font-medium text-slate-500">
               Payment total
             </span>
@@ -363,12 +346,10 @@ const AddPaymentModal = ({
                 Number(interestAmount || 0)
               ).toLocaleString("en-IN")}
             </span>
-
           </div>
 
           {/* Buttons */}
           <div className="flex gap-2">
-
             <button
               type="button"
               onClick={onClose}
@@ -387,7 +368,6 @@ const AddPaymentModal = ({
                 ? "Recording..."
                 : "Record payment"}
             </button>
-
           </div>
 
         </form>
@@ -431,13 +411,11 @@ const AmountInput = ({
 }) => {
   return (
     <div>
-
       <label className="mb-2 block text-[10px] font-semibold uppercase tracking-wider text-slate-500">
         {label}
       </label>
 
       <div className="relative">
-
         <span className="absolute left-3 top-1/2 -translate-y-1/2 text-sm text-slate-400">
           ₹
         </span>
@@ -449,18 +427,18 @@ const AmountInput = ({
             onChange(event.target.value)
           }
           min="0"
-          max={max}
+          {...(max !== undefined ? { max } : {})}
           step="0.01"
           placeholder="0"
           className="w-full rounded-xl border border-slate-200 py-2.5 pl-8 pr-3 font-mono text-sm text-slate-700 outline-none placeholder:text-slate-300 focus:border-violet-400 focus:ring-2 focus:ring-violet-500/10"
         />
-
       </div>
 
-      <p className="mt-1 text-[9px] text-slate-400">
-        Max ₹{max.toLocaleString("en-IN")}
-      </p>
-
+      {max !== undefined && (
+        <p className="mt-1 text-[9px] text-slate-400">
+          Max ₹{max.toLocaleString("en-IN")}
+        </p>
+      )}
     </div>
   );
 };

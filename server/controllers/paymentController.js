@@ -97,7 +97,7 @@ export const createPayment = async (
 
 
     // ----------------------------------------
-    // PREVENT OVERPAYMENT
+    // PREVENT PRINCIPAL OVERPAYMENT
     // ----------------------------------------
 
     if (
@@ -110,15 +110,12 @@ export const createPayment = async (
       });
     }
 
-    if (
-      interest >
-      record.outstandingInterest
-    ) {
-      return res.status(400).json({
-        message:
-          `Interest payment cannot exceed outstanding interest of ₹${record.outstandingInterest}`,
-      });
-    }
+    // Interest payments are intentionally
+    // not capped by outstandingInterest.
+    //
+    // Interest can be manually recorded as
+    // money received even when the currently
+    // outstanding interest is ₹0.
 
 
     // ----------------------------------------
